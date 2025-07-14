@@ -1,0 +1,44 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+/expiry_tracker/.atom/
+/expiry_tracker/.build/
+/expiry_tracker/.buildlog/
+/expiry_tracker/.history
+/expiry_tracker/.svn/
+/expiry_tracker/.swiftpm/
+/expiry_tracker/migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+/expiry_tracker/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+/expiry_tracker/**/doc/api/
+/expiry_tracker/**/ios/Flutter/.last_build_id
+/expiry_tracker/.dart_tool/
+/expiry_tracker/.flutter-plugins
+/expiry_tracker/.flutter-plugins-dependencies
+/expiry_tracker/.pub-cache/
+/expiry_tracker/.pub/
+/expiry_tracker/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/expiry_tracker/android/app/debug
+/expiry_tracker/android/app/profile
+/expiry_tracker/android/app/release
