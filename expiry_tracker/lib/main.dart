@@ -1,4 +1,4 @@
-import 'package:expiry_tracker/components/header.dart';
+import 'package:expiry_tracker/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 void main() {
