@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final int notificationsCount;
   final String? profileImageUrl;
   final VoidCallback? onProfileTap;
   final VoidCallback? onNotificationTap;
@@ -9,6 +10,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     required this.title,
+    required this.notificationsCount,
     this.profileImageUrl,
     this.onProfileTap,
     this.onNotificationTap,
@@ -18,6 +20,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final String titleGreetings = "${title.split(", ")[0]}, ";
     final String titleName = title.split(", ")[1];
+    final IconData notificationIcon = notificationsCount > 0
+        ? Icons.notifications
+        : Icons.notifications_outlined;
 
     return Container(
       decoration: BoxDecoration(
@@ -97,7 +102,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   child: Icon(
-                    Icons.notifications_outlined,
+                    notificationIcon,
                     size: 30,
                     color: Color(0xFFF59E0B),
                   ),
