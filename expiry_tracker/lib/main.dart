@@ -48,7 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Jó reggelt, Anett Fehér"),
+      appBar: CustomAppBar(
+        title: "Jó reggelt, Anett Fehér",
+        //notificationsCount: 0,
+        profileImageUrl: "https://i.ibb.co/5X06GKsw/profile.png",
+      ),
       body: SafeArea(child: Container()),
     );
   }
