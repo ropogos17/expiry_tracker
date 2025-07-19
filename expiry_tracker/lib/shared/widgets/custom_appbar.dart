@@ -18,6 +18,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double vw = MediaQuery.of(context).size.width;
+
     final String titleGreetings = "${title.split(", ")[0]}, ";
     final String titleName = title.split(", ")[1];
     final IconData notificationIcon = notificationsCount > 0
@@ -69,17 +71,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               Text(
                                 titleGreetings,
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.black87,
+                                  fontFamily: "Sora",
                                 ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
                                 titleName,
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black87,
+                                  fontFamily: "Sora",
                                 ),
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -99,8 +103,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       // Navigate to announcements page
                       Navigator.pushNamed(context, '/announcements');
                     },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4),
                   child: Icon(
                     notificationIcon,
                     size: 30,
