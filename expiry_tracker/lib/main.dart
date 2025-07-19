@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: "Jó reggelt, Anett Fehér",
-        notificationsCount: 3,
+        notificationsCount: 0,
         profileImageUrl: "https://i.ibb.co/5X06GKsw/profile.png",
       ),
       backgroundColor: AppColors.bgColorDefault,
