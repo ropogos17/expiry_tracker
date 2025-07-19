@@ -1,6 +1,6 @@
 import 'package:expiry_tracker/shared/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:expiry_tracker/shared/constants/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
         notificationsCount: 3,
         profileImageUrl: "https://i.ibb.co/5X06GKsw/profile.png",
       ),
-      backgroundColor: Color(0xFFF9FAFB),
+      backgroundColor: AppColors.bgColorDefault,
       body: Container(),
     );
   }
