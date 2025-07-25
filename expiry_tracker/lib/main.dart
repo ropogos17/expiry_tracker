@@ -1,15 +1,13 @@
-import 'package:expiry_tracker/features/announcements/presentation/widgets/announcement_card.dart';
-import 'package:expiry_tracker/shared/widgets/custom_appbar.dart';
-import 'package:flutter/material.dart' hide Title;
 import 'package:expiry_tracker/shared/constants/colors.dart';
+import 'package:expiry_tracker/shared/widgets/custom_appbar.dart';
+import 'package:expiry_tracker/shared/widgets/submit_button.dart';
 import 'package:expiry_tracker/shared/widgets/title.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'config/routes/app_routes.dart';
-import 'features/auth/presentation/bloc/auth_bloc.dart';
-import 'features/auth/domain/usecases/login_usecase.dart';
-import 'features/auth/data/repository/auth_repository_impl.dart';
-import 'features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:flutter/material.dart' hide Title;
+
 import 'core/network/network_service.dart';
+import 'features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'features/auth/data/repository/auth_repository_impl.dart';
+import 'features/auth/domain/usecases/login_usecase.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,20 +32,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AuthBloc(loginUseCase: _loginUseCase),
-        ),
-      ],
-      child: MaterialApp.router(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
-        routerConfig: AppRoutes.router,
-      ),
-    );
+    return MaterialApp(home: MyHomePage(title: "XDDDD"));
+    // return MultiBlocProvider(
+    //   providers: [
+    //     BlocProvider(
+    //       create: (context) => AuthBloc(loginUseCase: _loginUseCase),
+    //     ),
+    //   ],
+    //   child: MaterialApp.router(
+    //     title: 'Flutter Demo',
+    //     theme: ThemeData(
+    //       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     ),
+    //     routerConfig: AppRoutes.router,
+    //   ),
+    // );
   }
 }
 
@@ -71,15 +70,11 @@ class MyHomePage extends StatelessWidget {
             text: "Expiry Tracker",
             subtitle: "Tartsd számon, amid van – ne hagyd pazarolni!",
           ),
-          AnnouncementCard(
-            title: "Regisztráció megerősítése",
-            description:
-                "Köszönjük, hogy csatlakoztál! Kérjük, erősítsd meg az email címed a folytatáshoz – így értesíteni tudunk, ha egy étel hamarosan lejár.",
-            backgroundColor: Color(0xFFFFF7ED),
-            titleColor: Color(0xFF92400E),
-            borderColor: Color(0xFFFDBA74),
-            externalLink: "https://example.com/confirm-registration",
-            isRead: false,
+          SizedBox(height: 30),
+          SubmitButton(
+            text: "Bejelentkezés",
+            margin: EdgeInsets.all(25),
+            onPressed: () {},
           ),
         ],
       ),

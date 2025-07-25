@@ -40,4 +40,13 @@ class User {
     required this.updatedAt,
     this.deletedAt,
   });
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is User && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
