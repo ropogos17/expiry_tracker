@@ -82,11 +82,15 @@ class InputField extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  if (icon != null)
+                  if (isPassword == true || icon != null)
                     Container(
-                      width: 34,
-                      margin: EdgeInsetsGeometry.symmetric(horizontal: 15),
-                      child: icon,
+                      width: isPassword == true ? 28 : 34,
+                      margin: EdgeInsetsGeometry.symmetric(
+                        horizontal: isPassword == true ? 17 : 15,
+                      ),
+                      child: isPassword == true
+                          ? Image.asset("assets/images/lock.png")
+                          : icon,
                     ),
                   Expanded(
                     child: TextFormField(
@@ -95,6 +99,7 @@ class InputField extends StatelessWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: placeholder,
+                        hintStyle: TextStyle(color: Color(0xFF9CA3AF)),
                       ),
                       style: TextStyle(
                         color: Colors.black,

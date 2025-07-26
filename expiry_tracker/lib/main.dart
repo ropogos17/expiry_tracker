@@ -65,7 +65,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
-  final _controller = TextEditingController();
+  final _password_controller = TextEditingController();
+  final _email_controller = TextEditingController();
   bool _obscurePassword = true;
 
   void _togglePasswordVisibility() {
@@ -76,7 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _password_controller.dispose();
+    _email_controller.dispose();
     super.dispose();
   }
 
@@ -122,16 +124,32 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(height: 50),
           Form(
             key: _formKey,
-            child: InputField(
-              text: "Password",
-              controller: _controller,
-              margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
-              icon: Image.asset("assets/images/lock.png"),
-              isPassword: true,
-              obscurePassword: _obscurePassword,
-              onToggleVisibility: _togglePasswordVisibility,
-              passwordStrength: 4,
-              passwordStrengthText: "Erős",
+            child: Column(
+              children: [
+                InputField(
+                  text: "Email",
+                  controller: _email_controller,
+                  margin: EdgeInsetsGeometry.symmetric(
+                    horizontal: 20,
+                    vertical: 8,
+                  ),
+                  icon: Image.asset("assets/images/email.png"),
+                  placeholder: "sample@example.com",
+                ),
+                InputField(
+                  text: "Password",
+                  controller: _password_controller,
+                  margin: EdgeInsetsGeometry.symmetric(
+                    horizontal: 20,
+                    vertical: 8,
+                  ),
+                  //icon: Image.asset("assets/images/lock.png"),
+                  isPassword: true,
+                  obscurePassword: _obscurePassword,
+                  onToggleVisibility: _togglePasswordVisibility,
+                  placeholder: "•••••••••••",
+                ),
+              ],
             ),
           ),
         ],
