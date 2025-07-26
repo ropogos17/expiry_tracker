@@ -34,7 +34,12 @@ class InputField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Subhead(text: text, fontFamily: "Inter"),
+          Subhead(
+            text: text,
+            fontFamily: "Inter",
+            fontSize: subheadFontSize ?? 16,
+            color: subheadColor,
+          ),
           SizedBox(),
           Container(
             padding: EdgeInsets.all(measurePasswordStrength != null ? 2 : 1),
@@ -49,21 +54,29 @@ class InputField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+              padding: const EdgeInsets.only(right: 12),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Row(
                 children: [
-                  ?icon,
-                  TextFormField(
-                    obscureText: isPassword ?? false,
-                    decoration: InputDecoration(border: InputBorder.none),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: "Inter",
-                      fontSize: 16,
+                  if (icon != null)
+                    Container(
+                      width: 34,
+                      margin: EdgeInsetsGeometry.symmetric(horizontal: 15),
+                      child: icon,
+                    ),
+                  Expanded(
+                    child: TextFormField(
+                      obscureText: isPassword ?? false,
+                      decoration: InputDecoration(border: InputBorder.none),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: "Inter",
+                        fontSize: 16,
+                      ),
+                      cursorHeight: 20,
                     ),
                   ),
                 ],

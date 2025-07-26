@@ -102,9 +102,8 @@ class MyHomePage extends StatelessWidget {
           InputField(
             text: "Email",
             controller: TextEditingController(),
-            isPassword: true,
             margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
-            icon: Image.asset("/assets/images/email.png"),
+            icon: Image.asset("assets/images/email.png"),
           ),
         ],
       ),
