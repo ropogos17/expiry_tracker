@@ -127,7 +127,7 @@ class InputField extends StatelessWidget {
               ),
             ),
           ),
-          if (errorText != null || isPassword == true)
+          if (errorText != null || passwordStrengthText != null)
             Row(
               children: [
                 if (errorText != null)

@@ -23,7 +23,10 @@ class SubActionText extends StatelessWidget {
         text,
         textAlign: TextAlign.start,
         style: TextStyle(
+          fontFamily: "Inter",
+          fontSize: 14,
           color: color ?? Color(0xFF3B82F6),
+          decorationColor: color ?? Color(0xFF3B82F6),
           decoration: TextDecoration.underline,
         ),
       ),

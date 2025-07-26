@@ -151,11 +151,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     isPassword: true,
                     obscurePassword: _obscurePassword,
                     onToggleVisibility: _togglePasswordVisibility,
-                    placeholder: "•••••••••••",
+                    placeholder: "•••••••••",
                   ),
                   SubActionText(
                     text: "Elfelejtette a jelszavát?",
-                    margin: EdgeInsetsGeometry.symmetric(horizontal: 10),
+                    margin: EdgeInsetsGeometry.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                   ),
                 ],
               ),
