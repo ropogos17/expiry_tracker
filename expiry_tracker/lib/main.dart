@@ -1,4 +1,5 @@
 import 'package:expiry_tracker/core/constants/auth_constants.dart';
+import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
 import 'package:expiry_tracker/shared/constants/colors.dart';
 import 'package:expiry_tracker/shared/widgets/custom_appbar.dart';
 import 'package:expiry_tracker/shared/widgets/input_field.dart';
@@ -161,6 +162,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontal: 10,
                       vertical: 4,
                     ),
+                  ),
+                  SizedBox(height: 20),
+                  QuestionCta(
+                    question: "Még nincs fiókja?",
+                    cta: "Regisztráljon most!",
                   ),
                 ],
               ),
