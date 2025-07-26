@@ -66,6 +66,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
+  bool _obscurePassword = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscurePassword = !_obscurePassword;
+    });
+  }
 
   @override
   void dispose() {
@@ -121,6 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
               icon: Image.asset("assets/images/lock.png"),
               isPassword: true,
+              obscurePassword: _obscurePassword,
+              onToggleVisibility: _togglePasswordVisibility,
               passwordStrength: 4,
               passwordStrengthText: "Erős",
             ),

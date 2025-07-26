@@ -10,6 +10,8 @@ class InputField extends StatelessWidget {
   final double? subheadFontSize;
   final Widget? icon;
   final bool? isPassword;
+  final bool obscurePassword;
+  final VoidCallback? onToggleVisibility;
   final String? Function(String?)? validator;
   final EdgeInsetsGeometry? margin;
   final int? passwordStrength;
@@ -29,6 +31,8 @@ class InputField extends StatelessWidget {
     this.margin,
     this.passwordStrength,
     this.passwordStrengthText,
+    this.obscurePassword = true,
+    this.onToggleVisibility,
   });
 
   List<double> getGradientStops() {
@@ -87,7 +91,7 @@ class InputField extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       controller: controller,
-                      obscureText: isPassword ?? false,
+                      obscureText: isPassword == true ? obscurePassword : false,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: placeholder,
@@ -101,10 +105,17 @@ class InputField extends StatelessWidget {
                     ),
                   ),
                   if (isPassword == true)
-                    Container(
-                      width: 28,
-                      margin: EdgeInsetsGeometry.symmetric(horizontal: 8),
-                      child: Image.asset("assets/images/eye.png"),
+                    InkWell(
+                      onTap: onToggleVisibility,
+                      child: Container(
+                        width: 28,
+                        margin: EdgeInsetsGeometry.symmetric(horizontal: 8),
+                        child: Image.asset(
+                          obscurePassword
+                              ? "assets/images/eye.png"
+                              : "assets/images/eye_closed.png",
+                        ),
+                      ),
                     ),
                 ],
               ),
