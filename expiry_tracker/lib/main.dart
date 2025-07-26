@@ -90,6 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: "Jó reggelt, Anett Fehér",
         notificationsCount: 0,
         profileImageUrl: "https://i.ibb.co/5X06GKsw/profile.png",
+        onNotificationTap: () {},
+        onProfileTap: () {},
       ),
       backgroundColor: AppColors.bgColorDefault,
       body: Column(

@@ -96,6 +96,7 @@ class InputField extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       controller: controller,
+                      validator: validator,
                       obscureText: isPassword == true ? obscurePassword : false,
                       decoration: InputDecoration(
                         border: InputBorder.none,
