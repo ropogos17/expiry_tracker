@@ -54,10 +54,24 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _formKey = GlobalKey<FormState>();
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +113,17 @@ class MyHomePage extends StatelessWidget {
             margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
           ),
           SizedBox(height: 50),
-          InputField(
-            text: "Email",
-            controller: TextEditingController(),
-            margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
-            icon: Image.asset("assets/images/email.png"),
+          Form(
+            key: _formKey,
+            child: InputField(
+              text: "Password",
+              controller: _controller,
+              margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
+              icon: Image.asset("assets/images/lock.png"),
+              isPassword: true,
+              passwordStrength: 4,
+              passwordStrengthText: "Erős",
+            ),
           ),
         ],
       ),
