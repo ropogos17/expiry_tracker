@@ -25,12 +25,23 @@ class ItemCard extends StatelessWidget {
         border: BoxBorder.all(color: Color(0xFFFDBA74), width: 1.5),
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
-        children: [
-          if (imagePath != null) Image.asset(imagePath!),
-          Column(children: [Text(title), Text("$daysLeft nap")]),
-          Image.asset("assets/images/details.png", width: 20),
-        ],
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            if (imagePath != null) Image.asset(imagePath!),
+            Expanded(
+              child: Column(children: [Text(title), Text("$daysLeft nap")]),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+
+              children: [
+                Image.asset("assets/images/details.png", width: 20),
+                const Spacer(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
