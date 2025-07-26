@@ -3,6 +3,7 @@ import 'package:expiry_tracker/shared/constants/colors.dart';
 import 'package:expiry_tracker/shared/widgets/custom_appbar.dart';
 import 'package:expiry_tracker/shared/widgets/input_field.dart';
 import 'package:expiry_tracker/shared/widgets/social_media_button.dart';
+import 'package:expiry_tracker/shared/widgets/subaction_text.dart';
 import 'package:expiry_tracker/shared/widgets/subhead.dart';
 import 'package:expiry_tracker/shared/widgets/submit_button.dart';
 import 'package:expiry_tracker/shared/widgets/title.dart';
@@ -124,32 +125,40 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(height: 50),
           Form(
             key: _formKey,
-            child: Column(
-              children: [
-                InputField(
-                  text: "Email",
-                  controller: _email_controller,
-                  margin: EdgeInsetsGeometry.symmetric(
-                    horizontal: 20,
-                    vertical: 8,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InputField(
+                    text: "Email",
+                    controller: _email_controller,
+                    icon: Image.asset("assets/images/email.png"),
+                    placeholder: "sample@example.com",
+                    margin: EdgeInsetsGeometry.symmetric(
+                      horizontal: 8,
+                      vertical: 0,
+                    ),
                   ),
-                  icon: Image.asset("assets/images/email.png"),
-                  placeholder: "sample@example.com",
-                ),
-                InputField(
-                  text: "Password",
-                  controller: _password_controller,
-                  margin: EdgeInsetsGeometry.symmetric(
-                    horizontal: 20,
-                    vertical: 8,
+                  InputField(
+                    text: "Password",
+                    controller: _password_controller,
+                    margin: EdgeInsetsGeometry.symmetric(
+                      horizontal: 8,
+                      vertical: 0,
+                    ),
+                    //icon: Image.asset("assets/images/lock.png"),
+                    isPassword: true,
+                    obscurePassword: _obscurePassword,
+                    onToggleVisibility: _togglePasswordVisibility,
+                    placeholder: "•••••••••••",
                   ),
-                  //icon: Image.asset("assets/images/lock.png"),
-                  isPassword: true,
-                  obscurePassword: _obscurePassword,
-                  onToggleVisibility: _togglePasswordVisibility,
-                  placeholder: "•••••••••••",
-                ),
-              ],
+                  SubActionText(
+                    text: "Elfelejtette a jelszavát?",
+                    margin: EdgeInsetsGeometry.symmetric(horizontal: 10),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

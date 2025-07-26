@@ -87,6 +87,7 @@ class InputField extends StatelessWidget {
                       width: isPassword == true ? 28 : 34,
                       margin: EdgeInsetsGeometry.symmetric(
                         horizontal: isPassword == true ? 17 : 15,
+                        vertical: 0,
                       ),
                       child: isPassword == true
                           ? Image.asset("assets/images/lock.png")
@@ -126,36 +127,37 @@ class InputField extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            children: [
-              if (errorText != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    errorText ?? "",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.red,
-                      fontFamily: "Inter",
+          if (errorText != null || isPassword == true)
+            Row(
+              children: [
+                if (errorText != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Text(
+                      errorText ?? "",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.red,
+                        fontFamily: "Inter",
+                      ),
                     ),
                   ),
-                ),
-              Spacer(),
-              if (isPassword == true)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0, right: 10),
-                  child: Text(
-                    passwordStrengthText ?? "",
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Color(0xFF34D399),
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700,
+                Spacer(),
+                if (isPassword == true)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0, right: 10),
+                    child: Text(
+                      passwordStrengthText ?? "",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Color(0xFF34D399),
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
-                ),
-            ],
-          ),
+              ],
+            ),
         ],
       ),
     );
