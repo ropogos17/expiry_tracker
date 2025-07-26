@@ -5,7 +5,7 @@ class SubmitButton extends StatelessWidget {
   final Color? foregroundColor;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
-  final EdgeInsets? margin;
+  final EdgeInsetsGeometry? margin;
 
   const SubmitButton({
     super.key,

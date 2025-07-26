@@ -1,5 +1,9 @@
+import 'package:expiry_tracker/core/constants/auth_constants.dart';
 import 'package:expiry_tracker/shared/constants/colors.dart';
 import 'package:expiry_tracker/shared/widgets/custom_appbar.dart';
+import 'package:expiry_tracker/shared/widgets/input_field.dart';
+import 'package:expiry_tracker/shared/widgets/social_media_button.dart';
+import 'package:expiry_tracker/shared/widgets/subhead.dart';
 import 'package:expiry_tracker/shared/widgets/submit_button.dart';
 import 'package:expiry_tracker/shared/widgets/title.dart';
 import 'package:flutter/material.dart' hide Title;
@@ -65,6 +69,7 @@ class MyHomePage extends StatelessWidget {
       ),
       backgroundColor: AppColors.bgColorDefault,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Title(
             text: "Expiry Tracker",
@@ -75,6 +80,31 @@ class MyHomePage extends StatelessWidget {
             text: "Bejelentkezés",
             margin: EdgeInsets.all(25),
             onPressed: () {},
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SocialMediaButton(
+                socialMedia: AuthConstants.google,
+                onPressed: () {},
+              ),
+              SocialMediaButton(
+                socialMedia: AuthConstants.facebook,
+                onPressed: () {},
+              ),
+            ],
+          ),
+          Subhead(
+            text: "Megjegyzés",
+            margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
+          ),
+          SizedBox(height: 50),
+          InputField(
+            text: "Email",
+            controller: TextEditingController(),
+            isPassword: true,
+            margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
+            icon: Image.asset("/assets/images/email.png"),
           ),
         ],
       ),
