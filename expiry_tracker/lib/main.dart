@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 20),
                   ItemCard(
-                    margin: EdgeInsetsGeometry.symmetric(horizontal: 10),
+                    dismissibleKey: ValueKey("csulok"),
                     title: "Füstölt csülök",
                     imagePath: "assets/images/placeholders/csulok.jpg",
                     expirationDate: DateTime.now().add(
