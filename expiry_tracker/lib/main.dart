@@ -174,9 +174,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     dismissibleKey: ValueKey("csulok"),
                     title: "Füstölt csülök",
                     imagePath: "assets/images/placeholders/csulok.jpg",
-                    expirationDate: DateTime.now().add(
-                      Duration(days: 2, hours: 2),
-                    ),
                   ),
                 ],
               ),

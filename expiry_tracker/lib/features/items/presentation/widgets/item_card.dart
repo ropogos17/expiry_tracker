@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   final String title;
-  final DateTime expirationDate;
+  final String? subText;
   final Key dismissibleKey;
   final String? imagePath;
   final EdgeInsetsGeometry? margin;
@@ -14,7 +14,7 @@ class ItemCard extends StatelessWidget {
     super.key,
     required this.dismissibleKey,
     required this.title,
-    required this.expirationDate,
+    this.subText,
     this.imagePath,
     this.margin,
     this.onTap,
@@ -24,8 +24,6 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int daysLeft = expirationDate.difference(DateTime.now()).inDays;
-
     return Dismissible(
       key: dismissibleKey,
       direction: DismissDirection.startToEnd,
@@ -118,7 +116,7 @@ class ItemCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "$daysLeft nap",
+                                subText ?? "",
                                 style: TextStyle(
                                   color: Color(0xFF6B6B6B),
                                   fontSize: 14,
