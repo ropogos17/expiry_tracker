@@ -1,3 +1,4 @@
+import 'package:expiry_tracker/features/auth/presentation/widgets/auth_page_struct.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF3B82F6),
-      body: SafeArea(child: Column(children: [])),
+      body: SafeArea(child: AuthPageStruct(authType: AuthType.login)),
     );
   }
 }

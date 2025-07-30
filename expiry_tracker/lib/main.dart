@@ -1,5 +1,5 @@
 import 'package:expiry_tracker/core/constants/auth_constants.dart';
-import 'package:expiry_tracker/features/auth/presentation/pages/auth_page.dart';
+import 'package:expiry_tracker/features/auth/presentation/pages/login_page.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
 import 'package:expiry_tracker/features/items/presentation/widgets/item_card.dart';
 import 'package:expiry_tracker/shared/constants/colors.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: AuthPage());
+    return MaterialApp(home: LoginPage());
     // return MultiBlocProvider(
     //   providers: [
     //     BlocProvider(
@@ -136,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InputField(
-                    text: "Email",
+                    title: "Email",
                     controller: _email_controller,
                     icon: Image.asset("assets/images/email.png"),
                     placeholder: "sample@example.com",
@@ -146,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   InputField(
-                    text: "Password",
+                    title: "Password",
                     controller: _password_controller,
                     margin: EdgeInsetsGeometry.symmetric(
                       horizontal: 8,

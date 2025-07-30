@@ -1,4 +1,4 @@
-import 'package:expiry_tracker/features/auth/presentation/widgets/auth_text_field.dart';
+import 'package:expiry_tracker/shared/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -12,6 +12,7 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
   bool _obscurePassword = true;
 
   @override
@@ -27,12 +28,20 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          AuthTextField(controller: _emailController, labelText: "Email"),
-        ],
+    return Padding(
+      padding: EdgeInsetsGeometry.only(top: 20),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            InputField(
+              controller: _emailController,
+              title: "Email",
+              icon: Image.asset("assets/images/email.png"),
+              validator: (value) => null,
+            ),
+          ],
+        ),
       ),
     );
   }

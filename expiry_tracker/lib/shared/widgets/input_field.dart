@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
   final TextEditingController controller;
-  final String? text;
+  final String? title;
   final String? errorText;
   final String? placeholder;
   final Color? subheadColor;
@@ -12,7 +12,7 @@ class InputField extends StatelessWidget {
   final bool? isPassword;
   final bool obscurePassword;
   final VoidCallback? onToggleVisibility;
-  final String? Function(String?)? validator;
+  final String? Function(String? value)? validator;
   final EdgeInsetsGeometry? margin;
   final int? passwordStrength;
   final String? passwordStrengthText;
@@ -20,7 +20,7 @@ class InputField extends StatelessWidget {
   const InputField({
     super.key,
     required this.controller,
-    this.text,
+    this.title,
     this.errorText,
     this.placeholder,
     this.subheadColor,
@@ -51,9 +51,9 @@ class InputField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (text != null)
+          if (title != null)
             Subhead(
-              text: text ?? "",
+              text: title ?? "",
               fontFamily: "Inter",
               fontSize: subheadFontSize ?? 16,
               color: subheadColor,
