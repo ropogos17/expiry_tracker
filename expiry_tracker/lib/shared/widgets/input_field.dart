@@ -47,7 +47,8 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: margin ?? const EdgeInsets.all(8.0),
+      padding:
+          margin ?? const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
