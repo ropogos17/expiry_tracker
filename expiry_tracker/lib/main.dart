@@ -1,4 +1,5 @@
 import 'package:expiry_tracker/core/constants/auth_constants.dart';
+import 'package:expiry_tracker/features/auth/presentation/pages/auth_page.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
 import 'package:expiry_tracker/features/items/presentation/widgets/item_card.dart';
 import 'package:expiry_tracker/shared/constants/colors.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage(title: "XDDDD"));
+    return MaterialApp(home: AuthPage());
     // return MultiBlocProvider(
     //   providers: [
     //     BlocProvider(
