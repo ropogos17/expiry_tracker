@@ -57,7 +57,7 @@ class InputField extends StatelessWidget {
               text: title ?? "",
               fontFamily: "Inter",
               fontSize: subheadFontSize ?? 16,
-              color: subheadColor,
+              color: subheadColor ?? Color(0xFF111827),
             ),
           SizedBox(),
           Container(

@@ -1,4 +1,5 @@
 import 'package:expiry_tracker/features/auth/presentation/widgets/login_form.dart';
+import 'package:expiry_tracker/features/auth/presentation/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 
 enum AuthType { login, signup }
@@ -46,7 +47,10 @@ class AuthPageStruct extends StatelessWidget {
               color: Color(0xFFF9FAFB),
               borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
             ),
-            child: authType == AuthType.login ? LoginForm() : LoginForm(),
+            child: Padding(
+              padding: const EdgeInsetsGeometry.only(top: 38),
+              child: authType == AuthType.login ? LoginForm() : SignupForm(),
+            ),
           ),
         ),
         Positioned(
