@@ -71,12 +71,17 @@ class _MyHomePageState extends State<MyHomePage> {
   final _password_controller = TextEditingController();
   final _email_controller = TextEditingController();
   bool _obscurePassword = true;
+  bool checkBoxChecked = false;
 
   void _togglePasswordVisibility() {
     setState(() {
       _obscurePassword = !_obscurePassword;
     });
   }
+
+  void _toggleCheckBoxChecked() => setState(() {
+    checkBoxChecked = !checkBoxChecked;
+  });
 
   @override
   void dispose() {
@@ -172,7 +177,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     imagePath: "assets/images/placeholders/csulok.jpg",
                   ),
                   Checkbox(
-                    isChecked: false,
+                    isChecked: checkBoxChecked,
+                    onTap: _toggleCheckBoxChecked,
                     description: RichText(
                       softWrap: true,
                       text: TextSpan(
