@@ -1,16 +1,15 @@
 import 'package:expiry_tracker/core/constants/auth_constants.dart';
-import 'package:expiry_tracker/features/auth/presentation/pages/signup_page.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
 import 'package:expiry_tracker/features/items/presentation/widgets/item_card.dart';
 import 'package:expiry_tracker/shared/constants/colors.dart';
+import 'package:expiry_tracker/shared/widgets/checkbox.dart';
 import 'package:expiry_tracker/shared/widgets/custom_appbar.dart';
 import 'package:expiry_tracker/shared/widgets/input_field.dart';
 import 'package:expiry_tracker/shared/widgets/social_media_button.dart';
 import 'package:expiry_tracker/shared/widgets/subaction_text.dart';
-import 'package:expiry_tracker/shared/widgets/subhead.dart';
 import 'package:expiry_tracker/shared/widgets/submit_button.dart';
 import 'package:expiry_tracker/shared/widgets/title.dart';
-import 'package:flutter/material.dart' hide Title;
+import 'package:flutter/material.dart' hide Title, Checkbox;
 
 import 'core/network/network_service.dart';
 import 'features/auth/data/data_sources/auth_remote_data_source.dart';
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: SignupPage());
+    return MaterialApp(home: MyHomePage(title: "title"));
     // return MultiBlocProvider(
     //   providers: [
     //     BlocProvider(
@@ -123,11 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-          Subhead(
-            text: "Megjegyzés",
-            margin: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 8),
-          ),
-          SizedBox(height: 50),
+
           Form(
             key: _formKey,
             child: Padding(
@@ -175,6 +170,29 @@ class _MyHomePageState extends State<MyHomePage> {
                     dismissibleKey: ValueKey("csulok"),
                     title: "Füstölt csülök",
                     imagePath: "assets/images/placeholders/csulok.jpg",
+                  ),
+                  Checkbox(
+                    isChecked: false,
+                    description: RichText(
+                      softWrap: true,
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontFamily: "Inter",
+                          color: Colors.black,
+                        ),
+                        children: [
+                          TextSpan(
+                            text:
+                                "Elfogadom az ÁSZF-et és az Adatkezelési tájékoztatót.",
+                          ),
+                        ],
+                      ),
+                    ),
+                    margin: EdgeInsetsGeometry.symmetric(
+                      horizontal: 10,
+                      vertical: 20,
+                    ),
                   ),
                 ],
               ),
