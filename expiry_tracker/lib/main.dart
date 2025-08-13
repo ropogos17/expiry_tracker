@@ -1,4 +1,5 @@
 import 'package:expiry_tracker/core/constants/auth_constants.dart';
+import 'package:expiry_tracker/features/auth/presentation/pages/signup_page.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
 import 'package:expiry_tracker/features/items/presentation/widgets/item_card.dart';
 import 'package:expiry_tracker/shared/constants/colors.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage(title: "title"));
+    return MaterialApp(home: SignupPage());
     // return MultiBlocProvider(
     //   providers: [
     //     BlocProvider(
@@ -183,15 +184,28 @@ class _MyHomePageState extends State<MyHomePage> {
                       softWrap: true,
                       text: TextSpan(
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 12,
                           fontFamily: "Inter",
                           color: Colors.black,
                         ),
                         children: [
+                          TextSpan(text: "Elfogadom az "),
                           TextSpan(
-                            text:
-                                "Elfogadom az ÁSZF-et és az Adatkezelési tájékoztatót.",
+                            text: "ÁSZF",
+                            style: TextStyle(
+                              color: Color(0xFF3B82F6),
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
+                          TextSpan(text: "-et és az "),
+                          TextSpan(
+                            text: "Adatkezelési tájékoztatót",
+                            style: TextStyle(
+                              color: Color(0xFF3B82F6),
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          TextSpan(text: "."),
                         ],
                       ),
                     ),

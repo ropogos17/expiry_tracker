@@ -1,6 +1,7 @@
 import 'package:expiry_tracker/features/auth/presentation/helpers/password_strength.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
-import 'package:flutter/material.dart';
+import 'package:expiry_tracker/shared/widgets/checkbox.dart';
+import 'package:flutter/material.dart' hide Checkbox;
 
 import '../../../../shared/widgets/input_field.dart';
 import '../../../../shared/widgets/submit_button.dart';
@@ -110,6 +111,40 @@ class _SignupFormState extends State<SignupForm> {
             isPassword: true,
             placeholder: "•••••••••",
             margin: const EdgeInsets.symmetric(horizontal: 40),
+          ),
+          Checkbox(
+            description: RichText(
+              softWrap: true,
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 12,
+                  fontFamily: "Inter",
+                  color: Colors.black,
+                ),
+                children: [
+                  TextSpan(text: "Elfogadom az "),
+                  TextSpan(
+                    text: "ÁSZF",
+                    style: TextStyle(
+                      color: Color(0xFF3B82F6),
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  TextSpan(text: "-et és az "),
+                  TextSpan(
+                    text: "Adatkezelési tájékoztatót",
+                    style: TextStyle(
+                      color: Color(0xFF3B82F6),
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  TextSpan(text: "."),
+                ],
+              ),
+            ),
+            onTap: () {},
+            isChecked: false,
+            margin: const EdgeInsets.only(left: 40, right: 40, top: 20),
           ),
           SubmitButton(
             text: "Create account",
