@@ -5,5 +5,6 @@ class AppTheme {
   static final lightTheme = ThemeData.light().copyWith(
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
+    brightness: Brightness.light,
   );
 }
