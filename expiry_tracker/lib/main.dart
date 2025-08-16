@@ -1,3 +1,4 @@
+import 'package:expiry_tracker/config/theme/app_theme.dart';
 import 'package:expiry_tracker/core/constants/auth_constants.dart';
 import 'package:expiry_tracker/features/auth/presentation/pages/signup_page.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: SignupPage());
+    return MaterialApp(theme: AppTheme.lightTheme, home: SignupPage());
     // return MultiBlocProvider(
     //   providers: [
     //     BlocProvider(

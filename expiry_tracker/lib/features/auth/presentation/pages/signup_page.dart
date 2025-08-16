@@ -1,15 +1,188 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-import '../widgets/auth_page_struct.dart';
+import 'package:expiry_tracker/config/theme/app_colors.dart';
+import 'package:expiry_tracker/features/auth/presentation/widgets/auth_page_header.dart';
+import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
+import 'package:expiry_tracker/shared/widgets/checkbox.dart';
+import 'package:expiry_tracker/shared/widgets/input_field.dart';
+import 'package:expiry_tracker/shared/widgets/submit_button.dart';
+import 'package:flutter/material.dart' hide Checkbox;
+import 'package:flutter/services.dart';
 
-class SignupPage extends StatelessWidget {
+import '../helpers/password_strength.dart';
+
+const List<String> pwdLevels = [
+  "Very weak",
+  "Weak",
+  "Acceptable",
+  "Normal",
+  "Strong",
+  "Very Strong",
+];
+
+class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
   @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  int _passwordStrength = 0;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _passwordController.addListener(() {
+      _checkPasswordStrength();
+    });
+    super.initState();
+  }
+
+  void _checkPasswordStrength() {
+    setState(() {
+      _passwordStrength = checkPasswordStrength(
+        _passwordController.text.trim(),
+      );
+    });
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {}
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid) {
+      SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+          systemNavigationBarColor: AppColors.background,
+          systemNavigationBarIconBrightness: Brightness.light,
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFF3B82F6),
-      body: SafeArea(child: AuthPageStruct(authType: AuthType.signup)),
+      body: SafeArea(
+        child: AuthPageHeader(
+          bottomPadding: MediaQuery.of(context).padding.bottom,
+          title: "Regisztráció",
+          circleColor: AppColors.secondary_green,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 3),
+                    InputField(
+                      controller: _nameController,
+                      title: "Full Name",
+                      icon: Image.asset(
+                        "assets/images/account.png",
+                        color: AppColors.primary,
+                      ),
+                      validator: (value) => null,
+                      placeholder: "John Sample",
+                    ),
+                    InputField(
+                      controller: _emailController,
+                      title: "Email",
+                      icon: Image.asset("assets/images/email.png"),
+                      validator: (value) => null,
+                      placeholder: "example@example.com",
+                    ),
+                    InputField(
+                      controller: _passwordController,
+                      title: "Password",
+                      icon: Image.asset("assets/images/lock.png"),
+                      validator: (value) => null,
+                      isPassword: true,
+                      placeholder: "•••••••••",
+                      margin: const EdgeInsets.only(top: 3.0),
+                      passwordStrength: _passwordStrength,
+                      passwordStrengthText: pwdLevels[_passwordStrength],
+                    ),
+                    InputField(
+                      controller: _confirmPasswordController,
+                      title: "Confirm password",
+                      icon: Image.asset("assets/images/lock.png"),
+                      validator: (value) => null,
+                      isPassword: true,
+                      placeholder: "•••••••••",
+                      margin: const EdgeInsets.symmetric(vertical: 0),
+                    ),
+                    Checkbox(
+                      description: RichText(
+                        softWrap: true,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: "Inter",
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(text: "Elfogadom az "),
+                            TextSpan(
+                              text: "ÁSZF",
+                              style: TextStyle(
+                                color: Color(0xFF3B82F6),
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            TextSpan(text: "-et és az "),
+                            TextSpan(
+                              text: "Adatkezelési tájékoztatót",
+                              style: TextStyle(
+                                color: Color(0xFF3B82F6),
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            TextSpan(text: "."),
+                          ],
+                        ),
+                      ),
+                      onTap: () {},
+                      isChecked: false,
+                      margin: const EdgeInsets.only(top: 20),
+                    ),
+                    SubmitButton(
+                      text: "Create account",
+                      margin: const EdgeInsets.symmetric(vertical: 25.0),
+                      onPressed: () {},
+                    ),
+                    QuestionCta(
+                      cta: "Log in here!",
+                      question: "Already have account?",
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

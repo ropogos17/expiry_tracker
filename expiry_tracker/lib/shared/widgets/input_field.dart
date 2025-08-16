@@ -47,16 +47,17 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          margin ?? const EdgeInsets.symmetric(vertical: 6.0, horizontal: 40),
+      padding: margin ?? const EdgeInsets.symmetric(vertical: 3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null)
             Subhead(
-              text: title ?? "",
+              text: title!,
               fontFamily: "Inter",
-              fontSize: subheadFontSize ?? 16,
+              fontSize:
+                  subheadFontSize ??
+                  12 * MediaQuery.textScalerOf(context).scale(1),
               color: subheadColor ?? Color(0xFF111827),
             ),
           SizedBox(),
