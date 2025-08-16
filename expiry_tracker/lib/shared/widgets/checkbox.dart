@@ -5,6 +5,7 @@ class Checkbox extends StatelessWidget {
   final Widget? description;
   final EdgeInsetsGeometry? margin;
   final void Function()? onTap;
+  final double checkboxSize;
 
   const Checkbox({
     super.key,
@@ -12,6 +13,7 @@ class Checkbox extends StatelessWidget {
     this.description,
     this.margin,
     this.onTap,
+    this.checkboxSize = 22,
   });
 
   @override
@@ -23,8 +25,8 @@ class Checkbox extends StatelessWidget {
           GestureDetector(
             onTap: onTap,
             child: Container(
-              height: 28,
-              width: 28,
+              height: checkboxSize,
+              width: checkboxSize,
               decoration: BoxDecoration(
                 color: isChecked ? Color(0xFF3B82F6) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -41,7 +43,7 @@ class Checkbox extends StatelessWidget {
                   : null,
             ),
           ),
-          SizedBox(width: 10),
+          SizedBox(width: checkboxSize * 0.5),
           if (description != null) Expanded(child: description!),
         ],
       ),
