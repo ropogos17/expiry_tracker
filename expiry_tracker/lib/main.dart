@@ -14,9 +14,6 @@ import 'package:expiry_tracker/shared/widgets/title.dart';
 import 'package:flutter/material.dart' hide Title, Checkbox;
 
 import 'core/network/network_service.dart';
-import 'features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'features/auth/data/repository/auth_repository_impl.dart';
-import 'features/auth/domain/usecases/login_usecase.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,20 +21,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final NetworkService _networkService = NetworkService();
-  late final AuthRemoteDataSource _authRemoteDataSource;
-  late final AuthRepositoryImpl _authRepository;
-  late final LoginUseCase _loginUseCase;
-
-  MyApp({super.key}) {
-    _authRemoteDataSource = AuthRemoteDataSourceImpl(
-      networkService: _networkService,
-    );
-    _authRepository = AuthRepositoryImpl(
-      remoteDataSource: _authRemoteDataSource,
-      networkService: _networkService,
-    );
-    _loginUseCase = LoginUseCase(_authRepository);
-  }
 
   @override
   Widget build(BuildContext context) {
