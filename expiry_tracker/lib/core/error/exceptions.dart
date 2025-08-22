@@ -5,7 +5,11 @@ class ServerException implements Exception {
   ServerException({required this.message, required this.statusCode});
 }
 
-class CacheException implements Exception {}
+class CacheException implements Exception {
+  final String message;
+
+  CacheException(this.message);
+}
 
 class NetworkException implements Exception {}
 
