@@ -5,12 +5,12 @@ import 'package:expiry_tracker/core/usecases/usecase.dart';
 import 'package:expiry_tracker/features/auth/domain/entities/user.dart';
 import 'package:expiry_tracker/features/auth/domain/repository/auth_repository.dart';
 
-class RegisterParams extends Equatable {
+class SignUpParams extends Equatable {
   final String name;
   final String email;
   final String password;
 
-  const RegisterParams({
+  const SignUpParams({
     required this.name,
     required this.email,
     required this.password,
@@ -20,13 +20,13 @@ class RegisterParams extends Equatable {
   List<Object> get props => [name, email, password];
 }
 
-class RegisterUseCase implements UseCase<User, RegisterParams> {
+class SignUpUseCase implements UseCase<User, SignUpParams> {
   final AuthRepository repository;
 
-  RegisterUseCase(this.repository);
+  SignUpUseCase(this.repository);
 
   @override
-  Future<Either<Failure, User>> call(RegisterParams params) async {
+  Future<Either<Failure, User>> call(SignUpParams params) async {
     return await repository.registerWithEmailPassword(
       name: params.name,
       email: params.email,
