@@ -19,8 +19,6 @@ abstract interface class AuthRepository {
 
   Future<Either<Failure, void>> logout();
 
-  Future<Either<Failure, bool>> isLoggedIn();
-
   Future<Either<Failure, String?>> getAccessToken();
 
   Future<Either<Failure, String?>> getRefreshToken();
