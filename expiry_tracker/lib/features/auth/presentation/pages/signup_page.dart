@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:expiry_tracker/config/theme/app_colors.dart';
+import 'package:expiry_tracker/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/auth_page_header.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
 import 'package:expiry_tracker/shared/widgets/checkbox.dart';
@@ -8,6 +9,7 @@ import 'package:expiry_tracker/shared/widgets/input_field.dart';
 import 'package:expiry_tracker/shared/widgets/submit_button.dart';
 import 'package:flutter/material.dart' hide Checkbox;
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../helpers/password_strength.dart';
 
@@ -184,7 +186,17 @@ class _SignupPageState extends State<SignupPage> {
                     SubmitButton(
                       text: "Create account",
                       margin: const EdgeInsets.symmetric(vertical: 30),
-                      onPressed: () {},
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          context.read<AuthBloc>().add(
+                            AuthRegister(
+                              name: _nameController.text.trim(),
+                              email: _emailController.text.trim(),
+                              password: _passwordController.text.trim(),
+                            ),
+                          );
+                        }
+                      },
                     ),
                     QuestionCta(
                       cta: "Log in here!",

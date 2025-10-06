@@ -1,5 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:expiry_tracker/config/theme/app_theme.dart';
 import 'package:expiry_tracker/core/constants/auth_constants.dart';
+import 'package:expiry_tracker/core/network/network_info.dart';
+import 'package:expiry_tracker/features/auth/data/data_sources/auth_local_data_source.dart';
+import 'package:expiry_tracker/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:expiry_tracker/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:expiry_tracker/features/auth/domain/usecases/register_usecase.dart';
+import 'package:expiry_tracker/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:expiry_tracker/features/auth/presentation/pages/signup_page.dart';
 import 'package:expiry_tracker/features/auth/presentation/widgets/question_cta.dart';
 import 'package:expiry_tracker/features/items/presentation/widgets/item_card.dart';
@@ -12,11 +19,39 @@ import 'package:expiry_tracker/shared/widgets/subaction_text.dart';
 import 'package:expiry_tracker/shared/widgets/submit_button.dart';
 import 'package:expiry_tracker/shared/widgets/title.dart';
 import 'package:flutter/material.dart' hide Title, Checkbox;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'core/network/network_service.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => AuthBloc(
+            registerUseCase: RegisterUseCase(
+              AuthRepositoryImpl(
+                remoteDataSource: AuthRemoteDataSourceImpl(
+                  baseUrl: "sadas",
+                  dio: Dio(),
+                ),
+                localDataSource: AuthLocalDataSourceImpl(
+                  storage: FlutterSecureStorage(),
+                ),
+                networkInfo: NetworkInfoImpl(
+                  InternetConnectionChecker.instance,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
