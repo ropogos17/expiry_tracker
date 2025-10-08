@@ -35,7 +35,7 @@ void main() async {
             registerUseCase: RegisterUseCase(
               AuthRepositoryImpl(
                 remoteDataSource: AuthRemoteDataSourceImpl(
-                  baseUrl: "sadas",
+                  baseUrl: NetworkService.baseUrl,
                   dio: Dio(),
                 ),
                 localDataSource: AuthLocalDataSourceImpl(

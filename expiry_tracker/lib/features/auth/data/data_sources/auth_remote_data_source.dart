@@ -56,11 +56,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
+    print("object");
     try {
       final response = await dio.post(
         '$baseUrl/auth/register',
         data: {'name': name, 'email': email, 'password': password},
       );
+      print(response);
 
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data);

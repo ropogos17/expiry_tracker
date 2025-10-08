@@ -4,8 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class NetworkService {
   late final Dio _dio;
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
-  static const String baseUrl =
-      'http://localhost:8080'; // Replace with your actual URL
+  static const String baseUrl = 'http://localhost:8080';
 
   NetworkService() {
     _dio = Dio(

@@ -19,5 +19,5 @@ int checkPasswordStrength(String password) {
   if (isLongEnough) strength++;
   if (isVeryLong) strength++;
 
-  return strength.clamp(0, 6);
+  return strength.clamp(0, 5);
 }
