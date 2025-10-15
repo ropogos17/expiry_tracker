@@ -7,6 +7,7 @@ class AuthPageHeader extends StatelessWidget {
   final double? formContainerHeight;
   final Widget? child;
   final double bottomPadding;
+  final double formTopPad;
 
   const AuthPageHeader({
     super.key,
@@ -14,6 +15,7 @@ class AuthPageHeader extends StatelessWidget {
     required this.circleColor,
     this.formContainerHeight,
     this.child,
+    this.formTopPad = 0,
     required this.bottomPadding,
   });
 
@@ -33,7 +35,8 @@ class AuthPageHeader extends StatelessWidget {
         final titleFontSize = screenWidth * 0.051; // ~5.5% of screen width
 
         final formBorderRadius = screenWidth * 0.09; // ~9% of screen width
-        final formTopPadding = screenHeight * 0.04; // ~4.7% of screen height
+        final formTopPadding =
+            screenHeight * 0.04 + formTopPad; // ~4.7% of screen height
 
         final fridgeWidth = screenWidth * 0.58; // ~67% of screen width
         final fridgeRightOffset =

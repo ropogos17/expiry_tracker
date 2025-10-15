@@ -89,123 +89,137 @@ class _SignupPageState extends State<SignupPage> {
           circleColor: AppColors.secondary_green,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(
-                  parent: BouncingScrollPhysics(),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 3),
-                    InputField(
-                      controller: _nameController,
-                      title: "Full Name",
-                      icon: Image.asset(
-                        "assets/images/account.png",
-                        width: inputFieldIconSize,
-                        height: inputFieldIconSize,
-                        color: AppColors.primary,
-                      ),
-                      validator: (value) => null,
-                      placeholder: "John Sample",
+            child: BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthFailure) {
+                  print('Registration Error: ${state.message}');
+
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(state.message)));
+                }
+              },
+              builder: (context, state) {
+                return Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics(),
                     ),
-                    InputField(
-                      controller: _emailController,
-                      title: "Email",
-                      icon: Image.asset(
-                        "assets/images/email.png",
-                        width: inputFieldIconSize,
-                        height: inputFieldIconSize,
-                      ),
-                      validator: (value) => null,
-                      placeholder: "example@example.com",
-                    ),
-                    InputField(
-                      controller: _passwordController,
-                      title: "Password",
-                      icon: Image.asset(
-                        "assets/images/lock.png",
-                        width: inputFieldIconSize,
-                        height: inputFieldIconSize,
-                      ),
-                      validator: (value) => null,
-                      isPassword: true,
-                      placeholder: "•••••••••",
-                      passwordStrength: _passwordStrength,
-                      passwordStrengthText: pwdLevels[_passwordStrength],
-                    ),
-                    InputField(
-                      controller: _confirmPasswordController,
-                      title: "Confirm password",
-                      icon: Image.asset(
-                        "assets/images/lock.png",
-                        width: inputFieldIconSize,
-                        height: inputFieldIconSize,
-                      ),
-                      validator: (value) => null,
-                      isPassword: true,
-                      placeholder: "•••••••••",
-                    ),
-                    Checkbox(
-                      checkboxSize: MediaQuery.of(context).size.height * 0.026,
-                      description: RichText(
-                        softWrap: true,
-                        text: TextSpan(
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Inter",
-                            color: Colors.black,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 3),
+                        InputField(
+                          controller: _nameController,
+                          title: "Full Name",
+                          icon: Image.asset(
+                            "assets/images/account.png",
+                            width: inputFieldIconSize,
+                            height: inputFieldIconSize,
+                            color: AppColors.primary,
                           ),
-                          children: [
-                            TextSpan(text: "I accept the "),
-                            TextSpan(
-                              text: "Terms and Conditions",
-                              style: TextStyle(
-                                color: Color(0xFF3B82F6),
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                            TextSpan(text: " and the "),
-                            TextSpan(
-                              text: "Privacy Policy",
-                              style: TextStyle(
-                                color: Color(0xFF3B82F6),
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                            TextSpan(text: "."),
-                          ],
+                          validator: (value) => null,
+                          placeholder: "John Sample",
                         ),
-                      ),
-                      onTap: () {},
-                      isChecked: false,
-                      margin: const EdgeInsets.only(top: 10, bottom: 2),
-                    ),
-                    SubmitButton(
-                      text: "Create account",
-                      margin: const EdgeInsets.symmetric(vertical: 30),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<AuthBloc>().add(
-                            AuthRegister(
-                              name: _nameController.text.trim(),
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
+                        InputField(
+                          controller: _emailController,
+                          title: "Email",
+                          icon: Image.asset(
+                            "assets/images/email.png",
+                            width: inputFieldIconSize,
+                            height: inputFieldIconSize,
+                          ),
+                          validator: (value) => null,
+                          placeholder: "example@example.com",
+                        ),
+                        InputField(
+                          controller: _passwordController,
+                          title: "Password",
+                          icon: Image.asset(
+                            "assets/images/lock.png",
+                            width: inputFieldIconSize,
+                            height: inputFieldIconSize,
+                          ),
+                          validator: (value) => null,
+                          isPassword: true,
+                          placeholder: "•••••••••",
+                          passwordStrength: _passwordStrength,
+                          passwordStrengthText: pwdLevels[_passwordStrength],
+                        ),
+                        InputField(
+                          controller: _confirmPasswordController,
+                          title: "Confirm password",
+                          icon: Image.asset(
+                            "assets/images/lock.png",
+                            width: inputFieldIconSize,
+                            height: inputFieldIconSize,
+                          ),
+                          validator: (value) => null,
+                          isPassword: true,
+                          placeholder: "•••••••••",
+                        ),
+                        Checkbox(
+                          checkboxSize:
+                              MediaQuery.of(context).size.height * 0.026,
+                          description: RichText(
+                            softWrap: true,
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: "Inter",
+                                color: Colors.black,
+                              ),
+                              children: [
+                                TextSpan(text: "I accept the "),
+                                TextSpan(
+                                  text: "Terms and Conditions",
+                                  style: TextStyle(
+                                    color: Color(0xFF3B82F6),
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                                TextSpan(text: " and the "),
+                                TextSpan(
+                                  text: "Privacy Policy",
+                                  style: TextStyle(
+                                    color: Color(0xFF3B82F6),
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                                TextSpan(text: "."),
+                              ],
                             ),
-                          );
-                        }
-                      },
+                          ),
+                          onTap: () {},
+                          isChecked: false,
+                          margin: const EdgeInsets.only(top: 10, bottom: 2),
+                        ),
+                        SubmitButton(
+                          text: "Create account",
+                          margin: const EdgeInsets.symmetric(vertical: 30),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthBloc>().add(
+                                AuthRegister(
+                                  name: _nameController.text.trim(),
+                                  email: _emailController.text.trim(),
+                                  password: _passwordController.text.trim(),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                        QuestionCta(
+                          cta: "Log in here!",
+                          question: "Already have account?",
+                          onTap: () {},
+                        ),
+                      ],
                     ),
-                    QuestionCta(
-                      cta: "Log in here!",
-                      question: "Already have account?",
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             ),
           ),
         ),

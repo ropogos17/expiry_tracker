@@ -24,7 +24,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final Dio dio;
   final String baseUrl;
 
-  AuthRemoteDataSourceImpl({required this.dio, required this.baseUrl});
+  AuthRemoteDataSourceImpl({
+    required this.dio,
+    this.baseUrl = "http://localhost:8080",
+  });
 
   @override
   Future<AuthTokensModel> loginWithEmailPassword({
@@ -56,13 +59,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
-    print("object");
     try {
       final response = await dio.post(
         '$baseUrl/auth/register',
         data: {'name': name, 'email': email, 'password': password},
       );
-      print(response);
+      print(response); //TODO: remove this
 
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data);
