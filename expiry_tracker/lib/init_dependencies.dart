@@ -4,7 +4,7 @@ import 'package:expiry_tracker/features/auth/data/data_sources/auth_remote_data_
 import 'package:expiry_tracker/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:expiry_tracker/features/auth/domain/repository/auth_repository.dart';
 import 'package:expiry_tracker/features/auth/domain/usecases/login_usecase.dart';
-import 'package:expiry_tracker/features/auth/domain/usecases/register_usecase.dart';
+import 'package:expiry_tracker/features/auth/domain/usecases/register_user.dart';
 import 'package:expiry_tracker/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';

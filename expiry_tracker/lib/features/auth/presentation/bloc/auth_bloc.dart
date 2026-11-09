@@ -1,7 +1,7 @@
 import 'package:expiry_tracker/features/auth/domain/entities/auth_tokens.dart';
 import 'package:expiry_tracker/features/auth/domain/entities/user.dart';
 import 'package:expiry_tracker/features/auth/domain/usecases/login_usecase.dart';
-import 'package:expiry_tracker/features/auth/domain/usecases/register_usecase.dart';
+import 'package:expiry_tracker/features/auth/domain/usecases/register_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

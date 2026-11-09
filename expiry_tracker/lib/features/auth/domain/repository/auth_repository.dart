@@ -4,24 +4,17 @@ import 'package:expiry_tracker/features/auth/domain/entities/auth_tokens.dart';
 import 'package:expiry_tracker/features/auth/domain/entities/user.dart';
 
 abstract interface class AuthRepository {
-  Future<Either<Failure, AuthTokens>> loginWithEmailPassword({
+  Future<Either<Failure, Unit>> sendVerificationEmail({required String email});
+
+  Future<Either<Failure, Unit>> confirmVerificationEmail({
     required String email,
-    required String password,
+    required String code,
   });
 
-  Future<Either<Failure, User>> registerWithEmailPassword({
+  Future<Either<Failure, User>> registerUserWithEmailPassword({
     required String name,
+    required String username,
     required String email,
     required String password,
   });
-
-  Future<Either<Failure, String>> refreshToken({required String refreshToken});
-
-  Future<Either<Failure, void>> logout();
-
-  Future<Either<Failure, String?>> getAccessToken();
-
-  Future<Either<Failure, String?>> getRefreshToken();
-
-  Future<Either<Failure, void>> clearTokens();
 }
